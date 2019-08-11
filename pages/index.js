@@ -3,29 +3,15 @@ import react,{useState,useReducer,useEffect} from 'react'
 import {PaymentFormReducer} from '../reducer' 
 import {PaymentContext} from '../context'
 import {defaultSchema} from '../utils/formSchema'
+import {paymentMethods as methods} from '../utils/paymentMethods'
 import '../scss/index.scss'
 import PaymentCard from '../components/PaymentCard'
 
-let methods = [{
-  name: 'credit', 
-  texts:['信用卡','刷卡'],
-  img:'card-light.png'
-},
-{
-  name:'shop',
-  texts:['超商代碼','繳費'],
-  img:'shop-light.png'
-},
-{
-  name:'atm',
-  texts:['ATM','轉帳'],
-  img:'ATM-light.png'
-
-}]
 let paymentFormInit = {
   method: '', 
   data:defaultSchema[methods[0].name]
 }
+
 function IndexPage() {
   let [currentMethod,setCurrentMethod] = useState(methods[0].name)
   let [paymentData, paymentDispatcher] = useReducer(PaymentFormReducer,paymentFormInit) 
